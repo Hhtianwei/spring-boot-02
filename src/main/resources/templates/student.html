@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script type="text/javascript" th:src="@{/ui/js/jquery-3.2.1.js}"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            console.info("======"+new Date()+"======");
+
+            $("button.testAjax").on("click",function(){
+
+                var params = {
+                    name:"tianwei",
+                    clazz:"hahaha",
+                    locations:[{"province":"p","city":"c"}]
+                };
+
+                $.ajax({
+                    url:"form/addStu",
+                    type:"post",
+                    contentType:"application/json",
+                    data:JSON.stringify(params),
+                    success:function(result){
+                        console.info("result:" + result);
+                    }
+                });
+
+            });
+
+            $("button.testAjax2").on("click",function(){
+
+                var params = {
+                    name:"tianwei",
+                    clazz:"hahaha"
+                };
+
+                $.ajax({
+                    url:"form/addStu2",
+                    type:"post",
+                   // contentType:"application/json",
+                    data:params,
+                    success:function(result){
+                        console.info("result:" + result);
+                    }
+                });
+
+            });
+        });
+    </script>
+</head>
+<body>
+date:<span th:text="${date}"></span>
+
+<br/>
+
+<button class="testAjax">testAjax</button>
+
+<button class="testAjax2">testAjax2</button>
+</body>
+</html>
